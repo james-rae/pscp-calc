@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PSCP Party Prognosticator</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <!-- Input field for the saved state -->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <ul>
+                        <li>Use whole numbers (integers) everywhere, except Work Start Age which can have one decimal.</li>
+                        <ul>
+                            <li>Acts as if your birthday is on January 1st. This is to avoid doing partial / ratio calculations everywhere.</li>
+                            <li>You can back-date your start age to capture fractional years worked.</li>
+                            <li>
+                                E.g. Born Aug 2000. Start work Mar 2025. Quit Oct 2050. Put End Age as 50, Start Age as 24.4 to capture the extra 7
+                                months (50 - 24.4 = 25.6).
+                            </li>
+                            <li>Approximating with whole years is fine too.</li>
+                        </ul>
+                        <li>Only considers your governement career. E.g. CPP contributions from other jobs are excluded.</li>
+                        <li>All simulation values are in 2025 amounts. Inflation / indexing is not done.</li>
+                        <li>Assumes average top 5 salary will be above CPP limit (~$65,000).</li>
+                        <li>Will underestimate taxes if your retirement income is over $150,000 (consider donating to my patreon).</li>
+                        <li>Will underestimate taxes in any year you have no pension income and are over 65.</li>
+                        <li>
+                            CPP calculation will not science your "enhanced contribution" ratio. Amounts will likely be higher the further you are
+                            from retirement in 2025.
+                        </li>
+                        <li>Does not consider any spousal incoming-splitting tax shenanigans, nor implications from personal income sources.</li>
+                        <li>The data sent to the clipboard should be paste-able into Excel.</li>
+                        <li>
+                            Max Top-5 Salary (approx) for 2025: &nbsp; IT-2 &nbsp; $98750 &nbsp; | &nbsp; IT-3 &nbsp; $118350 &nbsp; | &nbsp; IT-4
+                            &nbsp; $135750
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr />
+
+            <!--Calculator Params -->
+            <!--Age Stuff -->
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Work Start Age</label>
+                    <input class="form-control" type="text" id="empStart" value="25.5" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Work End Age</label>
+                    <input class="form-control" type="text" id="empEnd" value="60" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Avg 5 Best Salary</label>
+                    <input class="form-control" type="text" id="salary" value="98750" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Pension Plan</label><br />
+                    <span class="input-group-addon"> <input type="checkbox" id="cohortA" /> Pre-2013 </span>
+                </div>
+            </div>
+            &nbsp;
+
+            <!--Benefit Start Ages -->
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Pension Start Age</label>
+                    <input class="form-control" type="text" id="pension" value="60" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>OAS Start Age [65 - 70]</label>
+                    <input class="form-control" type="text" id="oas" value="65" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label>CPP Start Age [60 - 70]</label>
+                    <input class="form-control" type="text" id="cpp" value="65" />
+                </div>
+            </div>
+
+            <!--Output -->
+
+            <hr />
+
+            <!-- https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_insert_deleterow , https://www.w3schools.com/jsref/met_table_insertrow.asp -->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <button class="btn btn-primary" id="cmdEnhance">Enhance!</button>&nbsp;<button class="btn btn-primary" id="cmdExport">
+                        To Clipboard
+                    </button>
+                    <table class="table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Age</th>
+                                <th scope="col">Net Income</th>
+                                <th scope="col">Bi-Weekly</th>
+                                <th scope="col">CPP</th>
+                                <th scope="col">OAS</th>
+                                <th scope="col">Pension</th>
+                                <th scope="col">Bridge</th>
+                                <th scope="col">Gross Income</th>
+                                <th scope="col">Taxes</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="/src/index.ts"></script>
+    </body>
+</html>
