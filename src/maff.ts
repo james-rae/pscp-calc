@@ -132,8 +132,7 @@ export const calcCPP = (yearsWorked: number, startAge: number): number => {
     if (startAge >= 65) {
         return deferBonus(baseMonth, 0.084, startAge);
     } else {
-        // 1 - 0.072 = 0.928
-        const factor = 0.928 * (65 - startAge);
+        const factor = 1 - 0.072 * (65 - startAge);
         return baseMonth * factor * 12;
     }
 };
