@@ -8,10 +8,11 @@
         <script src="https://cdn.jsdelivr.net/npm/kelpui@0/js/dark-mode-auto.js"></script>
     </head>
     <body>
-        <div class="container-fluid">
-            <!-- Input field for the saved state -->
-            <div class="row">
-                <div class="form-group col-md-12">
+        <!-- Input field for the saved state -->
+        <div class="container-2xl">
+            <div class="callout outline">
+                <details open>
+                    <summary><strong>Calculator Info</strong></summary>
                     <ul>
                         <li>Use whole numbers (integers) everywhere, except Work Start Age which can have one decimal.</li>
                         <ul>
@@ -39,77 +40,74 @@
                             &nbsp; $135750
                         </li>
                     </ul>
-                </div>
+                </details>
             </div>
+        </div>
 
-            <hr />
+        <hr />
 
-            <!--Calculator Params -->
-            <!--Age Stuff -->
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label>Work Start Age</label>
-                    <input class="form-control" type="text" id="empStart" value="25.5" />
-                </div>
-                <div class="form-group col-md-3">
-                    <label>Work End Age</label>
-                    <input class="form-control" type="text" id="empEnd" value="60" />
-                </div>
-                <div class="form-group col-md-3">
-                    <label>Avg 5 Best Salary</label>
-                    <input class="form-control" type="text" id="salary" value="98750" />
-                </div>
-                <div class="form-group col-md-3">
-                    <label>Pension Plan</label><br />
-                    <span class="input-group-addon"> <input type="checkbox" id="cohortA" /> Pre-2013 </span>
-                </div>
+        <!--Calculator Params -->
+        <!--Age Stuff -->
+        <div class="container-2xl grid">
+            <div class="item-fourth">
+                <label for="empStart">Work Start Age</label>
+                <input class="form-control" type="text" id="empStart" value="25.5" />
             </div>
-            &nbsp;
-
-            <!--Benefit Start Ages -->
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label>Pension Start Age</label>
-                    <input class="form-control" type="text" id="pension" value="60" />
-                </div>
-                <div class="form-group col-md-3">
-                    <label>OAS Start Age [65 - 70]</label>
-                    <input class="form-control" type="text" id="oas" value="65" />
-                </div>
-                <div class="form-group col-md-3">
-                    <label>CPP Start Age [60 - 70]</label>
-                    <input class="form-control" type="text" id="cpp" value="65" />
-                </div>
+            <div class="item-fourth">
+                <label for="empEnd">Work End Age</label>
+                <input class="form-control" type="text" id="empEnd" value="60" />
             </div>
-
-            <!--Output -->
-
-            <hr />
-
-            <!-- https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_insert_deleterow , https://www.w3schools.com/jsref/met_table_insertrow.asp -->
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <button class="btn btn-primary" id="cmdEnhance">Enhance!</button>&nbsp;<button class="btn btn-primary" id="cmdExport">
-                        To Clipboard
-                    </button>
-                    <table class="table" id="dataTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Age</th>
-                                <th scope="col">Net Income</th>
-                                <th scope="col">Bi-Weekly</th>
-                                <th scope="col">CPP</th>
-                                <th scope="col">OAS</th>
-                                <th scope="col">Pension</th>
-                                <th scope="col">Bridge</th>
-                                <th scope="col">Gross Income</th>
-                                <th scope="col">Taxes</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
+            <div class="item-fourth">
+                <label for="salary">Avg 5 Best Salary</label>
+                <input class="form-control" type="text" id="salary" value="98750" />
             </div>
+            <div class="item-fourth">
+                <label for="cohortA">Pension Plan</label><br />
+                <span class="input-group-addon"> <input type="checkbox" id="cohortA" /> Pre-2013 </span>
+            </div>
+        </div>
+        &nbsp;
+
+        <!--Benefit Start Ages -->
+        <div class="container-2xl grid">
+            <div class="item-fourth">
+                <label for="pension">Pension Start Age</label>
+                <input class="form-control" type="text" id="pension" value="60" />
+            </div>
+            <div class="item-fourth">
+                <label for="oas">OAS Start Age [65 - 70]</label>
+                <input class="form-control" type="text" id="oas" value="65" />
+            </div>
+            <div class="item-fourth">
+                <label for="cpp">CPP Start Age [60 - 70]</label>
+                <input class="form-control" type="text" id="cpp" value="65" />
+            </div>
+        </div>
+
+        <div class="container-2xl">
+            <button class="primary" id="cmdEnhance">Enhance!</button>&nbsp;<button class="secondary" id="cmdExport">To Clipboard</button>
+        </div>
+        <!--Output -->
+
+        <hr />
+
+        <div class="container-2xl">
+            <table class="table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th scope="col">Age</th>
+                        <th scope="col">Net Income</th>
+                        <th scope="col">Bi-Weekly</th>
+                        <th scope="col">CPP</th>
+                        <th scope="col">OAS</th>
+                        <th scope="col">Pension</th>
+                        <th scope="col">Bridge</th>
+                        <th scope="col">Gross Income</th>
+                        <th scope="col">Taxes</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
 
         <script type="module" src="/src/index.ts"></script>
