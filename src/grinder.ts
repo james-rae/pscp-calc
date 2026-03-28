@@ -86,7 +86,7 @@ export const grindProjection = (
             // starting 2022, OAS increases 10% at age 75 and up
             const oaass = oasAmt * (simAge > 74 ? 1.1 : 1);
 
-            const theClaw = 0.15 * Math.max(0, preOasSubtotal + oaass - 93454); // 2025 limit
+            const theClaw = 0.15 * Math.max(0, preOasSubtotal + oaass - 95323); // 2026 limit
 
             nugget.OAS = Math.max(0, oaass - theClaw);
         }

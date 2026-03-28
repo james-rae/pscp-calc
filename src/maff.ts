@@ -1,27 +1,27 @@
 /**
  * Yearly Maximum Pensionable Earnings
  */
-// const YMPE = 71300; // 2025
+// const YMPE = 74600; // 2026
 
 /**
  * Average Maximum Pensionable Earnings (last 5 years YMPE)
  */
-const AMPE = 66580; // 2025
+const AMPE = 69180; // 2026
 
 /**
  * CPP Max Monthly Payout
  */
-const maxMonthCPP = 1433; // 2025
+const maxMonthCPP = 1507; // 2026
 
 /**
  * OAS Max Monthly Payout
  */
-const maxMonthOAS = 727; // 2025
+const maxMonthOAS = 742; // 2026
 
 /**
  * Federal tax bracket of minimum
  */
-const fedBracket1 = 57375; // 2025
+const fedBracket1 = 58523; // 2026
 
 /**
  * Tax bracket calculator
@@ -55,24 +55,24 @@ const taxBracket = (yearIncome: number, bracket1: number, bracket2: number, rate
  * @returns Tax owed
  */
 export const calcTax = (yearIncome: number, age: number): number => {
-    // currently at 2025 tax year values
+    // currently at 2026 tax year values
 
-    const fedLowRate = 0.15;
+    const fedLowRate = 0.14;
     const ontLowRate = 0.0505;
 
     // fed + ontario
     const tax =
-        taxBracket(yearIncome, fedBracket1, 114750, fedLowRate, 0.205, 0.26) + taxBracket(yearIncome, 52886, 105775, ontLowRate, 0.0915, 0.1116);
+        taxBracket(yearIncome, fedBracket1, 117045, fedLowRate, 0.205, 0.26) + taxBracket(yearIncome, 53891, 107785, ontLowRate, 0.0915, 0.1116);
 
     // tax credits
 
-    // PESRSONAL AMOUNT (2025)
-    let canCred = 16129;
-    let ontCred = 12747;
+    // PESRSONAL AMOUNT (2026)
+    let canCred = 16452;
+    let ontCred = 12989;
 
     // AGE AMOUNT
     if (age > 64) {
-        // 2025 rates
+        // 2026 rates
         canCred += 9028 - Math.max(0, yearIncome - 45522) * fedLowRate;
         ontCred += 6223 - Math.max(0, yearIncome - 46330) * fedLowRate; // using fed low rate is correct here
     }
@@ -80,7 +80,7 @@ export const calcTax = (yearIncome: number, age: number): number => {
     // PENSION INCOME AMOUNT
     // assuming will always have > 2000 income as pensionable
     if (age > 64) {
-        // 2025 rates
+        // 2026 rates
         canCred += 2000;
         ontCred += 1762;
     }
